@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ta Bibliothèque — Sant Jordi 2026</title>
+<title>Your Library — Sant Jordi 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -120,25 +120,25 @@
 
 <section class="hero">
   <div class="rose-scatter" id="roses"></div>
-  <p class="hero-eyebrow">Sant Jordi · 23 Avril 2026</p>
-  <h1 class="hero-title">Ta<br><em>Bibliothèque</em></h1>
-  <p class="hero-sub">Une collection de livres choisis avec amour, rien que pour toi</p>
+  <p class="hero-eyebrow">Sant Jordi · April 23, 2026</p>
+  <h1 class="hero-title">Your<br><em>Library</em></h1>
+  <p class="hero-sub">A collection of books chosen with love, just for you</p>
   <blockquote class="hero-message">
-    Chaque grand livre est une conversation que nous n'avons pas encore eue. Voici les miens pour toi. À lire, à annoter, à discuter. Avec tout mon amour.
+    Because every great book is a conversation we haven't had yet — here are mine for you. To read, to annotate, to discuss. With all my love.
   </blockquote>
-  <div class="hero-cta"><a href="#library" class="btn">Explorer la collection</a></div>
+  <div class="hero-cta"><a href="#library" class="btn">Explore the library</a></div>
 </section>
 
 <section class="library" id="library">
-  <p class="section-label">La collection</p>
-  <h2 class="section-title">9 livres,<br><em>choisis pour toi</em></h2>
+  <p class="section-label">The collection</p>
+  <h2 class="section-title">9 books,<br><em>chosen for you</em></h2>
   <div class="filter-row">
-    <button class="filter-btn active" onclick="filter('all',this)">Tous</button>
-    <button class="filter-btn" onclick="filter('habits',this)">Habitudes</button>
+    <button class="filter-btn active" onclick="filter('all',this)">All</button>
+    <button class="filter-btn" onclick="filter('habits',this)">Habits</button>
     <button class="filter-btn" onclick="filter('fin',this)">Finance</button>
     <button class="filter-btn" onclick="filter('biz',this)">Business</button>
-    <button class="filter-btn" onclick="filter('nego',this)">Négociation</button>
-    <button class="filter-btn" onclick="filter('psych',this)">Psychologie</button>
+    <button class="filter-btn" onclick="filter('nego',this)">Negotiation</button>
+    <button class="filter-btn" onclick="filter('psych',this)">Psychology</button>
     <button class="filter-btn" onclick="filter('mgmt',this)">Management</button>
   </div>
   <div class="books-grid" id="grid"></div>
@@ -156,30 +156,30 @@
     </div>
     <div class="modal-body">
       <p class="modal-desc" id="m-desc"></p>
-      <div class="modal-why"><strong>Pourquoi ce livre pour toi</strong><span id="m-why"></span></div>
+      <div class="modal-why"><strong>Why this book for you</strong><span id="m-why"></span></div>
       <div class="modal-ebook" id="m-ebook">
-        <a href="#" id="m-ebook-link" class="ebook-btn" target="_blank" rel="noopener">↓ &nbsp; Lire l'ebook</a>
+        <a href="#" id="m-ebook-link" class="ebook-btn" target="_blank" rel="noopener">↓ &nbsp; Read the ebook</a>
       </div>
     </div>
-    <button class="modal-close" onclick="document.getElementById('overlay').classList.remove('open')">Fermer ✕</button>
+    <button class="modal-close" onclick="document.getElementById('overlay').classList.remove('open')">Close ✕</button>
   </div>
 </div>
 
 <footer class="footer">
-  Fait avec <span style="color:var(--red)">♥</span> pour Sant Jordi 2026
+  Made with <span style="color:var(--red)">♥</span> for Sant Jordi 2026
 </footer>
 
 <script>
 const BOOKS = [
-  { id:'atomic',      emoji:'⚛️',  bg:'#E8F5EE', title:'Atomic Habits', author:'James Clear', cat:'habits', tag:'Habitudes', desc:'Une méthode pour bâtir de bonnes habitudes et briser les mauvaises via des améliorations de 1%.', why:'Pour ton esprit de progression constante.' },
-  { id:'psych-money', emoji:'💰',  bg:'#E8F1FA', title:'The Psychology of Money', author:'Morgan Housel', cat:'fin', tag:'Finance', desc:'18 leçons sur la richesse et le bonheur, où le comportement importe plus que l\'intelligence.', why:'Le mélange parfait de psychologie et de finance pour toi.' },
-  { id:'never-split', emoji:'🤝',  bg:'#EEEDFE', title:'Never Split the Difference', author:'Chris Voss', cat:'nego', tag:'Négociation', desc:'Secrets de négociation du FBI appliqués au monde du business.', why:'Pour devenir imbattable en négociation.' },
-  { id:'thinking',    emoji:'🧠',  bg:'#FAEEDA', title:'Thinking, Fast and Slow', author:'Daniel Kahneman', cat:'psych', tag:'Psychologie', desc:'Les deux systèmes de pensée qui régissent nos jugements.', why:'Comprendre l\'origine de nos décisions.' },
-  { id:'zero-one',    emoji:'🚀',  bg:'#EAF3DE', title:'Zero to One', author:'Peter Thiel', cat:'biz', tag:'Business', desc:'Comment construire des entreprises qui créent de nouvelles choses.', why:'Pour ton âme d\'entrepreneur.' },
-  { id:'high-output', emoji:'🏆',  bg:'#FBEAF0', title:'High Output Management', author:'Andrew Grove', cat:'mgmt', tag:'Management', desc:'La bible de la gestion d\'équipe par le légendaire PDG d\'Intel.', why:'Un guide concret pour le leadership.' },
-  { id:'charlie',     emoji:'💡',  bg:'#E6F1FB', title:"Poor Charlie's Almanack", author:'Charlie Munger', cat:'fin', tag:'Finance', desc:'Sagesse et modèles mentaux du partenaire de Warren Buffett.', why:'Indispensable pour une pensée multidisciplinaire.' },
-  { id:'influence',   emoji:'🎯',  bg:'#EEEDFE', title:'Influence', author:'Robert Cialdini', cat:'nego', tag:'Négociation', desc:'Les six principes universels de la persuasion.', why:'Pour comprendre les leviers de l\'influence.' },
-  { id:'hard-thing',  emoji:'📈',  bg:'#EAF3DE', title:'The Hard Thing About Hard Things', author:'Ben Horowitz', cat:'biz', tag:'Business', desc:'La réalité brute et sans filtre du métier de CEO.', why:'Pour ton expérience concrète du business.' }
+  { id:'atomic',      emoji:'⚛️',  bg:'#E8F5EE', title:'Atomic Habits', author:'James Clear', cat:'habits', tag:'Habits', desc:'A proven framework for building good habits and breaking bad ones, using tiny 1% improvements.', why:'Because you believe in constant progress and the power of self-improvement.' },
+  { id:'psych-money', emoji:'💰',  bg:'#E8F1FA', title:'The Psychology of Money', author:'Morgan Housel', cat:'fin', tag:'Finance', desc:'18 timeless lessons about wealth, greed, and happiness. Behavior matters more than knowledge.', why:'Finance meets psychology — the perfect combo for you.' },
+  { id:'never-split', emoji:'🤝',  bg:'#EEEDFE', title:'Never Split the Difference', author:'Chris Voss', cat:'nego', tag:'Negotiation', desc:'Former FBI hostage negotiator reveals the secrets to high-stakes negotiation.', why:'Concrete techniques directly applicable in business and life.' },
+  { id:'thinking',    emoji:'🧠',  bg:'#FAEEDA', title:'Thinking, Fast and Slow', author:'Daniel Kahneman', cat:'psych', tag:'Psychology', desc:'Nobel Prize winner Kahneman reveals the two systems that drive the way we think.', why:'Understanding how people truly make decisions is essential for everything.' },
+  { id:'zero-one',    emoji:'🚀',  bg:'#EAF3DE', title:'Zero to One', author:'Peter Thiel', cat:'biz', tag:'Business', desc:'Contrarian philosophy on building the future and creating genuinely new things.', why:'For the entrepreneur at heart. A radical vision that challenges assumptions.' },
+  { id:'high-output', emoji:'🏆',  bg:'#FBEAF0', title:'High Output Management', author:'Andrew Grove', cat:'mgmt', tag:'Management', desc:'The bible of management by Intel\'s legendary CEO. Practical and honest.', why:'Silicon Valley\'s favorite management book. Actionable from day one.' },
+  { id:'charlie',     emoji:'💡',  bg:'#E6F1FB', title:"Poor Charlie's Almanack", author:'Charlie Munger', cat:'fin', tag:'Finance', desc:'Mental models and lessons on decision-making from Buffett\'s right-hand man.', why:'Finance meets life philosophy. The cult book of serious investors.' },
+  { id:'influence',   emoji:'🎯',  bg:'#EEEDFE', title:'Influence', author:'Robert Cialdini', cat:'nego', tag:'Negotiation', desc:'The classic on persuasion — six universal principles that guide human behavior.', why:'The bible of persuasion. Read alongside Never Split the Difference.' },
+  { id:'hard-thing',  emoji:'📈',  bg:'#EAF3DE', title:'The Hard Thing About Hard Things', author:'Ben Horowitz', cat:'biz', tag:'Business', desc:'Raw, honest lessons from a CEO who navigated the hardest moments of building a company.', why:'No sugarcoating, just lived experience in the face of crisis.' }
 ];
 
 const EBOOK_LINKS = {
