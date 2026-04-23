@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Library — Sant Jordi 2026</title>
+<title>Ta Bibliothèque — Sant Jordi 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -59,6 +59,7 @@
   .section-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.5rem; }
   .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; margin-bottom: 0.5rem; line-height: 1.1; }
   .section-title em { font-style: italic; color: var(--red); }
+  
   .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 2rem 0 2.5rem; }
   .filter-btn { font-size: 12px; padding: 6px 18px; border: 1px solid var(--border); background: transparent; color: var(--mid); cursor: pointer; font-family: var(--sans); transition: all 0.2s; letter-spacing: 0.05em; }
   .filter-btn:hover { border-color: var(--dark); color: var(--dark); }
@@ -73,9 +74,10 @@
   }
   .book-cover { aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; position: relative; border-bottom: 1px solid var(--border); }
   .book-tag { position: absolute; bottom: 10px; left: 10px; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; background: var(--cream); border: 1px solid var(--border); color: var(--mid); }
-  .gift-tag { position: absolute; top: 10px; right: 10px; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; background: var(--red); color: white; }
+  
   .ebook-dot { position: absolute; top: 10px; left: 10px; width: 8px; height: 8px; border-radius: 50%; background: #27ae60; display: none; }
   .has-link .ebook-dot { display: block; }
+  
   .book-info { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 4px; }
   .book-title { font-family: var(--serif); font-size: 16px; font-weight: 400; line-height: 1.25; }
   .book-author { font-size: 11px; color: var(--mid); letter-spacing: 0.04em; }
@@ -105,7 +107,6 @@
   .modal-close { display: block; width: 100%; padding: 14px; border: none; border-top: 1px solid var(--border); background: transparent; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); cursor: pointer; transition: background 0.2s; font-family: var(--sans); }
   .modal-close:hover { background: var(--parchment); color: var(--dark); }
 
-  /* FOOTER */
   .footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--border); font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--mid); }
 
   @media (max-width: 600px) {
@@ -119,31 +120,30 @@
 
 <section class="hero">
   <div class="rose-scatter" id="roses"></div>
-  <p class="hero-eyebrow">Sant Jordi · April 23, 2026</p>
-  <h1 class="hero-title">Your<br><em>Library</em></h1>
-  <p class="hero-sub">A collection of books chosen with love, just for you</p>
+  <p class="hero-eyebrow">Sant Jordi · 23 Avril 2026</p>
+  <h1 class="hero-title">Ta<br><em>Bibliothèque</em></h1>
+  <p class="hero-sub">Une collection de livres choisis avec amour, rien que pour toi</p>
   <blockquote class="hero-message">
-    Because every great book is a conversation we haven't had yet — here are mine for you. To read, to annotate, to discuss. With all my love.
+    Chaque grand livre est une conversation que nous n'avons pas encore eue. Voici les miens pour toi. À lire, à annoter, à discuter. Avec tout mon amour.
   </blockquote>
-  <div class="hero-cta"><a href="#library" class="btn">Explore the library</a></div>
+  <div class="hero-cta"><a href="#library" class="btn">Explorer la collection</a></div>
 </section>
 
 <section class="library" id="library">
-  <p class="section-label">The collection</p>
-  <h2 class="section-title">9 books,<br><em>chosen for you</em></h2>
+  <p class="section-label">La collection</p>
+  <h2 class="section-title">9 livres,<br><em>choisis pour toi</em></h2>
   <div class="filter-row">
-    <button class="filter-btn active" onclick="filter('all',this)">All</button>
-    <button class="filter-btn" onclick="filter('habits',this)">Habits</button>
+    <button class="filter-btn active" onclick="filter('all',this)">Tous</button>
+    <button class="filter-btn" onclick="filter('habits',this)">Habitudes</button>
     <button class="filter-btn" onclick="filter('fin',this)">Finance</button>
     <button class="filter-btn" onclick="filter('biz',this)">Business</button>
-    <button class="filter-btn" onclick="filter('nego',this)">Negotiation</button>
-    <button class="filter-btn" onclick="filter('psych',this)">Psychology</button>
+    <button class="filter-btn" onclick="filter('nego',this)">Négociation</button>
+    <button class="filter-btn" onclick="filter('psych',this)">Psychologie</button>
     <button class="filter-btn" onclick="filter('mgmt',this)">Management</button>
   </div>
   <div class="books-grid" id="grid"></div>
 </section>
 
-<!-- BOOK MODAL -->
 <div class="overlay" id="overlay" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
     <div class="modal-top">
@@ -156,59 +156,40 @@
     </div>
     <div class="modal-body">
       <p class="modal-desc" id="m-desc"></p>
-      <div class="modal-why"><strong>Why this book for you</strong><span id="m-why"></span></div>
+      <div class="modal-why"><strong>Pourquoi ce livre pour toi</strong><span id="m-why"></span></div>
       <div class="modal-ebook" id="m-ebook">
-        <a href="#" id="m-ebook-link" class="ebook-btn" target="_blank" rel="noopener">↓ &nbsp; Read the ebook</a>
+        <a href="#" id="m-ebook-link" class="ebook-btn" target="_blank" rel="noopener">↓ &nbsp; Lire l'ebook</a>
       </div>
     </div>
-    <button class="modal-close" onclick="document.getElementById('overlay').classList.remove('open')">Close ✕</button>
+    <button class="modal-close" onclick="document.getElementById('overlay').classList.remove('open')">Fermer ✕</button>
   </div>
-</div>
-</div>
-   
 </div>
 
 <footer class="footer">
-  Made with <span class="secret-heart">♥</span> for Sant Jordi 2026
+  Fait avec <span style="color:var(--red)">♥</span> pour Sant Jordi 2026
 </footer>
 
 <script>
 const BOOKS = [
-  { id:'atomic',      emoji:'⚛️',  bg:'#E8F5EE', title:'Atomic Habits',                    author:'James Clear',      cat:'habits', tag:'Habits',       gift:true,  desc:'A proven framework for building good habits and breaking bad ones, using tiny 1% improvements that compound over time into remarkable results.',                                                                   why:'My opening gift — because you believe in constant progress and the power of self-improvement. This one is yours to keep.' },
-  { id:'psych-money', emoji:'💰',  bg:'#E8F1FA', title:'The Psychology of Money',           author:'Morgan Housel',    cat:'fin',    tag:'Finance',       gift:false, desc:'18 timeless lessons about wealth, greed, and happiness. Shows how behavior matters more than knowledge when it comes to money.',                                                                               why:'Finance meets psychology — the perfect combo for you. One of the most accessible and profound books ever written about money.' },
-  { id:'never-split', emoji:'🤝',  bg:'#EEEDFE', title:'Never Split the Difference',        author:'Chris Voss',       cat:'nego',   tag:'Negotiation',   gift:false, desc:'Former FBI hostage negotiator reveals the secrets to high-stakes negotiation, from tactical empathy to the transformative power of \'no\'.',                                                                   why:'The absolute reference on negotiation. Concrete techniques drawn from real crisis situations — directly applicable in business.' },
-  { id:'thinking',    emoji:'🧠',  bg:'#FAEEDA', title:'Thinking, Fast and Slow',           author:'Daniel Kahneman',  cat:'psych',  tag:'Psychology',    gift:false, desc:'Nobel Prize winner Kahneman reveals the two systems that drive the way we think — and how they shape our judgments and decisions every day.',                                                                 why:'Understanding how people (and you) truly make decisions. Essential for negotiation, management, and finance alike.' },
-  { id:'zero-one',    emoji:'🚀',  bg:'#EAF3DE', title:'Zero to One',                       author:'Peter Thiel',      cat:'biz',    tag:'Business',      gift:false, desc:'Peter Thiel\'s contrarian philosophy on building the future — why monopolies win, and how to create something genuinely new.',                                                                               why:'For the entrepreneur at heart. A radical vision of business that challenges every conventional assumption. You\'ll love debating this one.' },
-  { id:'high-output', emoji:'🏆',  bg:'#FBEAF0', title:'High Output Management',            author:'Andrew Grove',     cat:'mgmt',   tag:'Management',    gift:false, desc:'The bible of management by Intel\'s legendary CEO. Practical, honest, and still the gold standard for leading teams and building organisations.',                                                             why:'Silicon Valley\'s favourite management book. Concrete, jargon-free, and actionable from day one.' },
-  { id:'charlie',     emoji:'💡',  bg:'#E6F1FB', title:"Poor Charlie's Almanack",           author:'Charlie Munger',   cat:'fin',    tag:'Finance',       gift:false, desc:'The wit and wisdom of Charlie Munger — mental models, multidisciplinary thinking, and lessons on decision-making from Buffett\'s right-hand man.',                                                           why:'Finance meets life philosophy. The cult book of serious investors. Dense, brilliant, and absolutely indispensable.' },
-  { id:'influence',   emoji:'🎯',  bg:'#EEEDFE', title:'Influence',                         author:'Robert Cialdini',  cat:'nego',   tag:'Negotiation',   gift:false, desc:'The classic on persuasion — six universal principles that guide human behavior, used by negotiators, marketers, and leaders worldwide.',                                                                     why:'The bible of persuasion. Read alongside Never Split the Difference and you\'ll become an unstoppable negotiator.' },
-  { id:'hard-thing',  emoji:'📈',  bg:'#EAF3DE', title:'The Hard Thing About Hard Things', author:'Ben Horowitz',     cat:'biz',    tag:'Business',      gift:false, desc:'No sugarcoating — just raw, honest lessons from a CEO who navigated the hardest moments of building a company from scratch.',                                                                              why:'The most honest business book out there. Real crises, tough decisions — no theory, just lived experience.' }
+  { id:'atomic',      emoji:'⚛️',  bg:'#E8F5EE', title:'Atomic Habits', author:'James Clear', cat:'habits', tag:'Habitudes', desc:'Une méthode pour bâtir de bonnes habitudes et briser les mauvaises via des améliorations de 1%.', why:'Pour ton esprit de progression constante.' },
+  { id:'psych-money', emoji:'💰',  bg:'#E8F1FA', title:'The Psychology of Money', author:'Morgan Housel', cat:'fin', tag:'Finance', desc:'18 leçons sur la richesse et le bonheur, où le comportement importe plus que l\'intelligence.', why:'Le mélange parfait de psychologie et de finance pour toi.' },
+  { id:'never-split', emoji:'🤝',  bg:'#EEEDFE', title:'Never Split the Difference', author:'Chris Voss', cat:'nego', tag:'Négociation', desc:'Secrets de négociation du FBI appliqués au monde du business.', why:'Pour devenir imbattable en négociation.' },
+  { id:'thinking',    emoji:'🧠',  bg:'#FAEEDA', title:'Thinking, Fast and Slow', author:'Daniel Kahneman', cat:'psych', tag:'Psychologie', desc:'Les deux systèmes de pensée qui régissent nos jugements.', why:'Comprendre l\'origine de nos décisions.' },
+  { id:'zero-one',    emoji:'🚀',  bg:'#EAF3DE', title:'Zero to One', author:'Peter Thiel', cat:'biz', tag:'Business', desc:'Comment construire des entreprises qui créent de nouvelles choses.', why:'Pour ton âme d\'entrepreneur.' },
+  { id:'high-output', emoji:'🏆',  bg:'#FBEAF0', title:'High Output Management', author:'Andrew Grove', cat:'mgmt', tag:'Management', desc:'La bible de la gestion d\'équipe par le légendaire PDG d\'Intel.', why:'Un guide concret pour le leadership.' },
+  { id:'charlie',     emoji:'💡',  bg:'#E6F1FB', title:"Poor Charlie's Almanack", author:'Charlie Munger', cat:'fin', tag:'Finance', desc:'Sagesse et modèles mentaux du partenaire de Warren Buffett.', why:'Indispensable pour une pensée multidisciplinaire.' },
+  { id:'influence',   emoji:'🎯',  bg:'#EEEDFE', title:'Influence', author:'Robert Cialdini', cat:'nego', tag:'Négociation', desc:'Les six principes universels de la persuasion.', why:'Pour comprendre les leviers de l\'influence.' },
+  { id:'hard-thing',  emoji:'📈',  bg:'#EAF3DE', title:'The Hard Thing About Hard Things', author:'Ben Horowitz', cat:'biz', tag:'Business', desc:'La réalité brute et sans filtre du métier de CEO.', why:'Pour ton expérience concrète du business.' }
 ];
 
-// ═══════════════════════════════════════════════════════════════
-// 📚 EBOOK LINKS — add/update links here, one per book
-//    To add a link: replace null with "https://your-link.com"
-//    To remove a link: set it back to null
-// ═══════════════════════════════════════════════════════════════
 const EBOOK_LINKS = {
-  "atomic":      null,  // Atomic Habits
-  "psych-money": null,  // The Psychology of Money
-  "never-split": null,  // Never Split the Difference
-  "thinking":    null,  // Thinking, Fast and Slow
-  "zero-one":    null,  // Zero to One
-  "high-output": null,  // High Output Management
-  "charlie":     null,  // Poor Charlie's Almanack
-  "influence":   null,  // Influence
-  "hard-thing":  null,  // The Hard Thing About Hard Things
+  "atomic": "https://4b479a11-3ce7-455a-920a-59ac782f94ce.filesusr.com/ugd/43cb27_198a33a6a36747959a2f685fe3df4335.pdf",
+  "psych-money": "https://tiue.uz/wp-content/uploads/2024/02/The-Psychology-of-Money-Morgan-Housel.pdf"
 };
-// ═══════════════════════════════════════════════════════════════
 
 const links = Object.fromEntries(Object.entries(EBOOK_LINKS).filter(([,v]) => v !== null));
-
 let currentFilter = 'all';
-let clickCount = 0, clickTimer = null;
 
-// ── GRID ──────────────────────────────────────────────────────────────
 function render() {
   const list = currentFilter === 'all' ? BOOKS : BOOKS.filter(b => b.cat === currentFilter);
   document.getElementById('grid').innerHTML = list.map((b, i) => `
@@ -232,7 +213,6 @@ function filter(cat, el) {
   render();
 }
 
-// ── BOOK MODAL ────────────────────────────────────────────────────────
 function openBook(id) {
   const b = BOOKS.find(x => x.id === id);
   if (!b) return;
@@ -254,7 +234,6 @@ function openBook(id) {
   document.getElementById('overlay').classList.add('open');
 }
 
-// ── PETALS ────────────────────────────────────────────────────────────
 const scatter = document.getElementById('roses');
 for (let i = 0; i < 18; i++) {
   const el = document.createElement('div');
