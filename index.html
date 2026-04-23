@@ -215,7 +215,6 @@ function render() {
     <div class="book-card${links[b.id] ? ' has-link' : ''}" onclick="openBook('${b.id}')" style="animation-delay:${i*0.05}s">
       <div class="book-cover" style="background:${b.bg}">
         <div class="ebook-dot"></div>
-        ${b.gift ? '<span class="gift-tag">🎁 Gift</span>' : ''}
         <span>${b.emoji}</span>
         <span class="book-tag">${b.tag}</span>
       </div>
