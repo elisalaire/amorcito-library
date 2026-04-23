@@ -132,7 +132,7 @@
 
 <section class="library" id="library">
   <p class="section-label">The collection</p>
-  <h2 class="section-title">9 books,<br><em>chosen for you</em></h2>
+  <h2 class="section-title">11 books,<br><em>chosen for you</em></h2>
   <div class="filter-row">
     <button class="filter-btn active" onclick="filter('all',this)">All</button>
     <button class="filter-btn" onclick="filter('habits',this)">Habits</button>
@@ -176,6 +176,8 @@ const BOOKS = [
   { id:'psych-money', emoji:'💰',  bg:'#E8F1FA', title:'The Psychology of Money', author:'Morgan Housel', cat:'fin', tag:'Finance', desc:'18 timeless lessons about wealth, greed, and happiness. Behavior matters more than knowledge.', why:'Finance meets psychology — the perfect combo for you.' },
   { id:'never-split', emoji:'🤝',  bg:'#EEEDFE', title:'Never Split the Difference', author:'Chris Voss', cat:'nego', tag:'Negotiation', desc:'Former FBI hostage negotiator reveals the secrets to high-stakes negotiation.', why:'Concrete techniques directly applicable in business and life.' },
   { id:'thinking',    emoji:'🧠',  bg:'#FAEEDA', title:'Thinking, Fast and Slow', author:'Daniel Kahneman', cat:'psych', tag:'Psychology', desc:'Nobel Prize winner Kahneman reveals the two systems that drive the way we think.', why:'Understanding how people truly make decisions is essential for everything.' },
+  { id:'clear-thinking', emoji:'✨', bg:'#F5F5F5', title:'Clear Thinking', author:'Shane Parrish', cat:'psych', tag:'Psychology', desc:'Mastering the tiny moments that lead to big results by learning how to think better under pressure.', why:'To master your own thoughts and avoid the traps of automatic reactions.' },
+  { id:'almanack',    emoji:'📖',  bg:'#FDF2E9', title:'The Almanack of Naval Ravikant', author:'Naval Ravikant', cat:'biz', tag:'Business', desc:'A guide to wealth and happiness, focusing on building specific knowledge and leverage.', why:'A modern guide for building a meaningful life and career with freedom.' },
   { id:'zero-one',    emoji:'🚀',  bg:'#EAF3DE', title:'Zero to One', author:'Peter Thiel', cat:'biz', tag:'Business', desc:'Contrarian philosophy on building the future and creating genuinely new things.', why:'For the entrepreneur at heart. A radical vision that challenges assumptions.' },
   { id:'high-output', emoji:'🏆',  bg:'#FBEAF0', title:'High Output Management', author:'Andrew Grove', cat:'mgmt', tag:'Management', desc:'The bible of management by Intel\'s legendary CEO. Practical and honest.', why:'Silicon Valley\'s favorite management book. Actionable from day one.' },
   { id:'charlie',     emoji:'💡',  bg:'#E6F1FB', title:"Poor Charlie's Almanack", author:'Charlie Munger', cat:'fin', tag:'Finance', desc:'Mental models and lessons on decision-making from Buffett\'s right-hand man.', why:'Finance meets life philosophy. The cult book of serious investors.' },
@@ -191,7 +193,9 @@ const EBOOK_LINKS = {
   "zero-one": "https://icrrd.com/public/media/01-11-2020-203418Zero%20to%20One.pdf",
   "high-output": "https://dev-media.q84sale.com/uploads/pdf/1740653032786373292.pdf",
   "charlie": "https://ia600702.us.archive.org/33/items/poor-charlies-almanack-the-wit-and-wisdom-of-charles-t.-munger-pdfdrive/Poor%20Charlie%E2%80%99s%20Almanack_%20The%20Wit%20and%20Wisdom%20of%20Charles%20T.%20Munger%20%28%20PDFDrive%20%29.pdf",
-  "influence": "https://ia903201.us.archive.org/7/items/ThePsychologyOfPersuasion/The%20Psychology%20of%20Persuasion.pdf"
+  "influence": "https://ia903201.us.archive.org/7/items/ThePsychologyOfPersuasion/The%20Psychology%20of%20Persuasion.pdf",
+  "clear-thinking": "https://ia801209.us.archive.org/0/items/clear-thinking/ClearThinking.pdf",
+  "almanack": "https://navalmanack.s3.amazonaws.com/Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_Final.pdf"
 };
 
 const links = Object.fromEntries(Object.entries(EBOOK_LINKS).filter(([,v]) => v !== null));
