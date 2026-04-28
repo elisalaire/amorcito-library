@@ -12,6 +12,7 @@
     --cream: #FAF7F2;
     --parchment: #F2EDE4;
     --red: #C0392B;
+    --green: #27ae60;
     --dark: #1A1614;
     --mid: #6B5E58;
     --border: rgba(26,22,20,0.12);
@@ -66,8 +67,14 @@
   .filter-btn.active { background: var(--dark); color: var(--cream); border-color: var(--dark); }
 
   .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1px; border: 1px solid var(--border); }
-  .book-card { background: var(--cream); cursor: pointer; transition: all 0.3s ease; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; animation: fadeUp 0.5s ease both; }
+  .book-card { background: var(--cream); cursor: pointer; transition: all 0.3s ease; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; animation: fadeUp 0.5s ease both; position: relative;}
   .book-card:hover { background: var(--parchment); }
+  
+  /* Status styles on Card */
+  .card-status-label { position: absolute; top: 15px; right: 15px; font-size: 10px; font-weight: bold; background: var(--green); color: white; padding: 2px 6px; letter-spacing: 0.1em; display: none;}
+  .is-finished .card-status-label { display: block; }
+  .page-marker { font-size: 11px; color: var(--red); font-weight: 600; margin-top: 4px; }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -75,10 +82,10 @@
   .book-cover { aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; position: relative; border-bottom: 1px solid var(--border); }
   .book-tag { position: absolute; bottom: 15px; left: 15px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; background: var(--cream); border: 1px solid var(--border); color: var(--mid); font-weight: 500; }
   
-  .ebook-dot { position: absolute; top: 15px; left: 15px; width: 10px; height: 10px; border-radius: 50%; background: #27ae60; display: none; box-shadow: 0 0 8px rgba(39, 174, 96, 0.4); }
+  .ebook-dot { position: absolute; top: 15px; left: 15px; width: 10px; height: 10px; border-radius: 50%; background: var(--green); display: none; box-shadow: 0 0 8px rgba(39, 174, 96, 0.4); }
   .has-link .ebook-dot { display: block; }
   
-  .book-info { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .book-info { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 2px; }
   .book-title { font-family: var(--serif); font-size: 20px; font-weight: 400; line-height: 1.25; }
   .book-author { font-size: 13px; color: var(--mid); letter-spacing: 0.04em; }
 
@@ -96,7 +103,16 @@
   .modal-tag { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem; font-weight: 600; }
   .modal-title { font-family: var(--serif); font-size: 2.2rem; font-weight: 400; line-height: 1.15; margin-bottom: 0.5rem; }
   .modal-author { font-size: 15px; color: var(--mid); letter-spacing: 0.05em; }
+  
+  /* Features Styles in Modal */
   .modal-body { padding: 2rem; }
+  .progress-section { margin-bottom: 2rem; background: var(--parchment); padding: 1.5rem; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 1rem; }
+  .progress-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .progress-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: var(--mid); }
+  .page-input { width: 80px; padding: 8px; border: 1px solid var(--border); font-family: var(--sans); font-size: 14px; text-align: center; }
+  .finish-btn { padding: 10px 20px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid var(--dark); cursor: pointer; background: transparent; transition: 0.2s; }
+  .finish-btn.active { background: var(--green); color: white; border-color: var(--green); }
+
   .modal-desc { font-family: var(--serif); font-size: 20px; line-height: 1.7; color: var(--dark); margin-bottom: 2rem; }
   .modal-why { font-size: 16px; line-height: 1.8; color: var(--mid); border-top: 1px solid var(--border); padding-top: 1.5rem; font-style: italic; font-family: var(--serif); }
   .modal-why strong { color: var(--red); font-style: normal; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 0.6rem; font-family: var(--sans); }
@@ -156,6 +172,17 @@
       </div>
     </div>
     <div class="modal-body">
+      <div class="progress-section">
+        <div class="progress-row">
+          <span class="progress-label">Currently at page:</span>
+          <input type="number" id="m-page-input" class="page-input" placeholder="0" oninput="saveProgress()">
+        </div>
+        <div class="progress-row">
+          <span class="progress-label">Status:</span>
+          <button id="m-finish-btn" class="finish-btn" onclick="toggleFinished()">Mark as Finished</button>
+        </div>
+      </div>
+
       <p class="modal-desc" id="m-desc"></p>
       <div class="modal-why"><strong>Why this book for you</strong><span id="m-why"></span></div>
       <div class="modal-ebook" id="m-ebook">
@@ -200,11 +227,18 @@ const EBOOK_LINKS = {
 
 const links = Object.fromEntries(Object.entries(EBOOK_LINKS).filter(([,v]) => v !== null));
 let currentFilter = 'all';
+let activeBookId = null;
+
+// Initialize User Progress from LocalStorage
+let userProgress = JSON.parse(localStorage.getItem('readingProgress_2026')) || {};
 
 function render() {
   const list = currentFilter === 'all' ? BOOKS : BOOKS.filter(b => b.cat === currentFilter);
-  document.getElementById('grid').innerHTML = list.map((b, i) => `
-    <div class="book-card${links[b.id] ? ' has-link' : ''}" onclick="openBook('${b.id}')" style="animation-delay:${i*0.05}s">
+  document.getElementById('grid').innerHTML = list.map((b, i) => {
+    const progress = userProgress[b.id] || { page: '', finished: false };
+    return `
+    <div id="card-${b.id}" class="book-card ${links[b.id] ? 'has-link' : ''} ${progress.finished ? 'is-finished' : ''}" onclick="openBook('${b.id}')" style="animation-delay:${i*0.05}s">
+      <div class="card-status-label">COMPLETED ✓</div>
       <div class="book-cover" style="background:${b.bg}">
         <div class="ebook-dot"></div>
         <span>${b.emoji}</span>
@@ -213,8 +247,10 @@ function render() {
       <div class="book-info">
         <div class="book-title">${b.title}</div>
         <div class="book-author">${b.author}</div>
+        <div id="marker-${b.id}" class="page-marker">${progress.page ? 'Currently at page ' + progress.page : ''}</div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function filter(cat, el) {
@@ -227,6 +263,9 @@ function filter(cat, el) {
 function openBook(id) {
   const b = BOOKS.find(x => x.id === id);
   if (!b) return;
+  activeBookId = id;
+  
+  // UI Updates
   document.getElementById('m-cover').style.background = b.bg;
   document.getElementById('m-cover').textContent = b.emoji;
   document.getElementById('m-tag').textContent = b.tag;
@@ -234,6 +273,19 @@ function openBook(id) {
   document.getElementById('m-author').textContent = b.author;
   document.getElementById('m-desc').textContent = b.desc;
   document.getElementById('m-why').textContent = b.why;
+  
+  // Progress Load
+  const progress = userProgress[id] || { page: '', finished: false };
+  document.getElementById('m-page-input').value = progress.page;
+  const finishBtn = document.getElementById('m-finish-btn');
+  if(progress.finished) {
+    finishBtn.classList.add('active');
+    finishBtn.textContent = "Finished! ✓";
+  } else {
+    finishBtn.classList.remove('active');
+    finishBtn.textContent = "Mark as Finished";
+  }
+
   const ebookDiv = document.getElementById('m-ebook');
   const ebookLink = document.getElementById('m-ebook-link');
   if (links[b.id]) {
@@ -243,6 +295,37 @@ function openBook(id) {
     ebookDiv.classList.remove('visible');
   }
   document.getElementById('overlay').classList.add('open');
+}
+
+// Progress Saving Functions
+function saveProgress() {
+  const pageVal = document.getElementById('m-page-input').value;
+  if (!userProgress[activeBookId]) userProgress[activeBookId] = { page: '', finished: false };
+  userProgress[activeBookId].page = pageVal;
+  
+  localStorage.setItem('readingProgress_2026', JSON.stringify(userProgress));
+  
+  // Update marker on card without full re-render
+  const marker = document.getElementById(`marker-${activeBookId}`);
+  if (marker) marker.textContent = pageVal ? 'Currently at page ' + pageVal : '';
+}
+
+function toggleFinished() {
+  if (!userProgress[activeBookId]) userProgress[activeBookId] = { page: '', finished: false };
+  userProgress[activeBookId].finished = !userProgress[activeBookId].finished;
+  
+  localStorage.setItem('readingProgress_2026', JSON.stringify(userProgress));
+  
+  // Update Card UI
+  const card = document.getElementById(`card-${activeBookId}`);
+  if(userProgress[activeBookId].finished) {
+    card.classList.add('is-finished');
+  } else {
+    card.classList.remove('is-finished');
+  }
+  
+  // Update Modal UI
+  openBook(activeBookId); 
 }
 
 const scatter = document.getElementById('roses');
